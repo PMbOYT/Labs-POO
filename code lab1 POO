@@ -1,0 +1,98 @@
+using System;
+using System.Collections.Generic;
+
+namespace BibliotecaApp
+{
+    // Class representing a book
+    public class Carte
+    {
+        // Properties of the book
+        public string Titlu { get; set; }
+        public string Autor { get; set; }
+        public string ISBN { get; set; }
+
+        // Constructor to initialize a book
+        public Carte(string titlu, string autor, string isbn)
+        {
+            Titlu = titlu;
+            Autor = autor;
+            ISBN = isbn;
+        }
+
+        // Override ToString() to display book information
+        public override string ToString()
+        {
+            return $"Titlu: {Titlu}, Autor: {Autor}, ISBN: {ISBN}";
+        }
+    }
+
+    // Class representing a library
+    public class Biblioteca
+    {
+        // List of books
+        private List<Carte> carti;
+
+        // Constructor to initialize the library
+        public Biblioteca()
+        {
+            carti = new List<Carte>();
+        }
+
+        // Method to add a book to the library
+        public void AdaugaCarte(Carte carte)
+        {
+            carti.Add(carte);
+            Console.WriteLine($"Cartea '{carte.Titlu}' a fost adăugată în bibliotecă.");
+        }
+
+        // Method to remove a book from the library
+        public void EliminaCarte(string isbn)
+        {
+            Carte carteDeEliminat = carti.Find(c => c.ISBN == isbn);
+
+            if (carteDeEliminat != null)
+            {
+                carti.Remove(carteDeEliminat);
+                Console.WriteLine($"Cartea '{carteDeEliminat.Titlu}' a fost eliminată din bibliotecă.");
+            }
+            else
+            {
+                Console.WriteLine("Cartea nu a fost găsită.");
+            }
+        }
+
+        // Method to display all books in the library
+        public void AfiseazaCarti()
+        {
+            Console.WriteLine("Cărțile din bibliotecă:");
+            foreach (Carte carte in carti)
+            {
+                Console.WriteLine(carte);
+            }
+        }
+    }
+
+    // Main program to demonstrate the functionality
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Creating the library
+            Biblioteca biblioteca = new Biblioteca();
+
+            // Adding books to the library
+            biblioteca.AdaugaCarte(new Carte("1984", "George Orwell", "978-0451524935"));
+            biblioteca.AdaugaCarte(new Carte("Mândrie și prejudecată", "Jane Austen", "978-1503290563"));
+            biblioteca.AdaugaCarte(new Carte("Alchimistul", "Paulo Coelho", "978-0062315007"));
+
+            // Display all books
+            biblioteca.AfiseazaCarti();
+
+            // Remove a book by ISBN
+            biblioteca.EliminaCarte("978-0451524935");
+
+            // Display all books after removal
+            biblioteca.AfiseazaCarti();
+        }
+    }
+}
