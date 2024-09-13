@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace BibliotecaApp
+namespace LibrarySystem
 {
-    // Class representing a book
     public class Carte
     {
-        // Properties of the book
+        // Properties for encapsulation
         public string Titlu { get; set; }
         public string Autor { get; set; }
         public string ISBN { get; set; }
@@ -19,17 +18,16 @@ namespace BibliotecaApp
             ISBN = isbn;
         }
 
-        // Override ToString() to display book information
+        // Override ToString() for displaying book details
         public override string ToString()
         {
             return $"Titlu: {Titlu}, Autor: {Autor}, ISBN: {ISBN}";
         }
     }
 
-    // Class representing a library
     public class Biblioteca
     {
-        // List of books
+        // List to store books
         private List<Carte> carti;
 
         // Constructor to initialize the library
@@ -38,33 +36,32 @@ namespace BibliotecaApp
             carti = new List<Carte>();
         }
 
-        // Method to add a book to the library
+        // Method to add a book
         public void AdaugaCarte(Carte carte)
         {
             carti.Add(carte);
-            Console.WriteLine($"Cartea '{carte.Titlu}' a fost adăugată în bibliotecă.");
+            Console.WriteLine($"Cartea '{carte.Titlu}' a fost adaugata.");
         }
 
-        // Method to remove a book from the library
+        // Method to remove a book by ISBN
         public void EliminaCarte(string isbn)
         {
             Carte carteDeEliminat = carti.Find(c => c.ISBN == isbn);
-
             if (carteDeEliminat != null)
             {
                 carti.Remove(carteDeEliminat);
-                Console.WriteLine($"Cartea '{carteDeEliminat.Titlu}' a fost eliminată din bibliotecă.");
+                Console.WriteLine($"Cartea '{carteDeEliminat.Titlu}' a fost eliminata.");
             }
             else
             {
-                Console.WriteLine("Cartea nu a fost găsită.");
+                Console.WriteLine("Cartea nu a fost gasita.");
             }
         }
 
-        // Method to display all books in the library
+        // Method to display all books
         public void AfiseazaCarti()
         {
-            Console.WriteLine("Cărțile din bibliotecă:");
+            Console.WriteLine("Cartile din biblioteca:");
             foreach (Carte carte in carti)
             {
                 Console.WriteLine(carte);
@@ -72,26 +69,25 @@ namespace BibliotecaApp
         }
     }
 
-    // Main program to demonstrate the functionality
     class Program
     {
         static void Main(string[] args)
         {
-            // Creating the library
+            // Create the library
             Biblioteca biblioteca = new Biblioteca();
 
-            // Adding books to the library
+            // Add books
             biblioteca.AdaugaCarte(new Carte("1984", "George Orwell", "978-0451524935"));
-            biblioteca.AdaugaCarte(new Carte("Mândrie și prejudecată", "Jane Austen", "978-1503290563"));
+            biblioteca.AdaugaCarte(new Carte("Mandrie si prejudecata", "Jane Austen", "978-1503290563"));
             biblioteca.AdaugaCarte(new Carte("Alchimistul", "Paulo Coelho", "978-0062315007"));
 
-            // Display all books
+            // Display books
             biblioteca.AfiseazaCarti();
 
             // Remove a book by ISBN
             biblioteca.EliminaCarte("978-0451524935");
 
-            // Display all books after removal
+            // Display books after removal
             biblioteca.AfiseazaCarti();
         }
     }
