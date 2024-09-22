@@ -1,0 +1,89 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+// Class for representing a book (Carte)
+class Carte {
+private:
+    string titlu;
+    string autor;
+    string isbn;
+
+public:
+    // Constructor to initialize a book
+    Carte(string t, string a, string i) : titlu(t), autor(a), isbn(i) {}
+
+    // Getter and Setter for Titlu
+    string getTitlu() const { return titlu; }
+    void setTitlu(const string& t) { titlu = t; }
+
+    // Getter and Setter for Autor
+    string getAutor() const { return autor; }
+    void setAutor(const string& a) { autor = a; }
+
+    // Getter and Setter for ISBN
+    string getISBN() const { return isbn; }
+    void setISBN(const string& i) { isbn = i; }
+
+    // Method to display book details (equivalent of ToString in C#)
+    string toString() const {
+        return "Titlu: " + titlu + ", Autor: " + autor + ", ISBN: " + isbn;
+    }
+};
+
+// Class for representing the library (Biblioteca)
+class Biblioteca {
+private:
+    // List to store books
+    vector<Carte> carti;
+
+public:
+    // Method to add a book
+    void adaugaCarte(const Carte& carte) {
+        carti.push_back(carte);
+        cout << "Cartea '" << carte.getTitlu() << "' a fost adaugata." << endl;
+    }
+
+    // Method to remove a book by ISBN
+    void eliminaCarte(const string& isbn) {
+        for (auto it = carti.begin(); it != carti.end(); ++it) {
+            if (it->getISBN() == isbn) {
+                cout << "Cartea '" << it->getTitlu() << "' a fost eliminata." << endl;
+                carti.erase(it);
+                return;
+            }
+        }
+        cout << "Cartea nu a fost gasita." << endl;
+    }
+
+    // Method to display all books
+    void afiseazaCarti() const {
+        cout << "Cartile din biblioteca:" << endl;
+        for (const auto& carte : carti) {
+            cout << carte.toString() << endl;
+        }
+    }
+};
+
+// Main function
+int main() {
+    // Create the library
+    Biblioteca biblioteca;
+
+    // Add books
+    biblioteca.adaugaCarte(Carte("1984", "George Orwell", "978-0451524935"));
+    biblioteca.adaugaCarte(Carte("Mandrie si prejudecata", "Jane Austen", "978-1503290563"));
+    biblioteca.adaugaCarte(Carte("Alchimistul", "Paulo Coelho", "978-0062315007"));
+
+    // Display books
+    biblioteca.afiseazaCarti();
+
+    // Remove a book by ISBN
+    biblioteca.eliminaCarte("978-0451524935");
+
+    // Display books after removal
+    biblioteca.afiseazaCarti();
+
+    return 0;
+}
