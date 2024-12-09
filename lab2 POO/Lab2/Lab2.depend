@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1733777924 source:c:\users\user\desktop\school\c and c++\lab2 poo\lab2\persontclass.cpp
+	<iostream>
+	<string>
+	<vector>
+	<unordered_map>
+	<fstream>
+
+1733779947 source:c:\users\user\desktop\school\c and c++\lab2 poo\lab2\faculty.cpp
+	"Faculty.h"
+	<algorithm>
+	<stdexcept>
+
+1733779923 c:\users\user\desktop\school\c and c++\lab2 poo\lab2\faculty.h
+	<vector>
+	<string>
+	"Student.h"
+
+1733779872 c:\users\user\desktop\school\c and c++\lab2 poo\lab2\student.h
+	<string>
+
+1733779998 source:c:\users\user\desktop\school\c and c++\lab2 poo\lab2\main.cpp
+	<iostream>
+	"University.h"
+	"Faculty.h"
+	"Student.h"
+
+1733779967 c:\users\user\desktop\school\c and c++\lab2 poo\lab2\university.h
+	<vector>
+	<string>
+	"Faculty.h"
+
+1733779894 source:c:\users\user\desktop\school\c and c++\lab2 poo\lab2\student.cpp
+	"Student.h"
+
+1733779986 source:c:\users\user\desktop\school\c and c++\lab2 poo\lab2\university.cpp
+	"University.h"
+	<algorithm>
+
